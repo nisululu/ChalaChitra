@@ -1,0 +1,167 @@
+@import "../../mixins.scss";
+
+.header {
+    position: fixed;
+    z-index: 2;
+    // transform: translateY(0);
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    transition: all ease .5s;
+    color: white;
+
+    &.show {
+        background-color: rgba(0, 0, 0, 0.25);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+
+    &.hide {
+        transform: translateY(-60px);
+    }
+
+    .contentWrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .logo {
+            cursor: pointer;
+            display: flex;
+            gap: 5px;
+            align-items: center;
+            @include md{
+            gap: 10px;
+            }
+
+            img {
+                width: 30px;
+            }
+
+            .logoTxt {
+                font-size: 20px;
+                letter-spacing: .8px;
+                background: -webkit-linear-gradient(#f69607, #df4057);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+
+                @include lg {
+                    font-size: 28px;
+                    letter-spacing: 1.5px;
+                }
+            }
+        }
+    }
+
+    .menuItems {
+        list-style-type: none;
+        display: none;
+        align-items: center;
+
+        @include md {
+            display: flex;
+        }
+
+        .menuItem {
+            cursor: pointer;
+            margin: 0 20px;
+            font-weight: 500;
+
+            &:hover {
+                color: var(--pink);
+            }
+        }
+    }
+
+    .mobileMenuItems {
+        display: flex;
+        gap: 20px;
+
+        @include md {
+            display: none;
+        }
+    }
+
+    &.mobileView {
+        // background-color: var(--black);
+
+        .menuItems {
+            display: flex;
+            position: absolute;
+            top: 60px;
+            left: 0;
+            background-color: var(--black3);
+            width: 100%;
+            padding: 20px 0;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            animation: mobileMenu .3s ease;
+
+            .menuItem {
+                font-style: 20px;
+                width: 100%;
+                height: auto;
+                padding: 10px 20px;
+
+                &:last-child {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    .searchBar {
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        background: white;
+        height: 50px;
+        color: black;
+        animation: mobileMenu .3s ease;
+
+        @include md {
+            height: 60px;
+        }
+
+        .searchInput {
+            height: 50px;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 0 15px;
+
+            @include md {
+                height: 60px;
+            }
+
+            input {
+                width: 100%;
+                height: 40px;
+                outline: none;
+                border: none;
+                font-style: 14px;
+
+                @include md {
+                    font-size: 20px;
+                }
+            }
+
+            svg {
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+@keyframes mobileMenu {
+    0% {
+        transform: translateY(-130%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}

@@ -1,0 +1,26 @@
+@import "../../mixins.scss";
+
+.genres {
+    display: none;
+    font-size: 12px;
+    @include md {
+        position: absolute;
+        color: white;
+        right: 5px;
+        bottom: 5px;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        align-items: end;
+    }
+
+    @include lg {
+        font-size: 14px;
+    }
+
+    .genre {
+        background-color: rgba(0, 0, 0, 0.8);
+        padding: 6px;
+        border-radius: 5px;
+    }
+}

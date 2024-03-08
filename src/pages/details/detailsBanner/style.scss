@@ -1,0 +1,288 @@
+@import "../../../mixins.scss";
+
+.detailsBanner {
+    width: 100%;
+    // background-color: var(--black);
+    padding-top: 100px;
+    margin-bottom: 50px;
+
+    @include md {
+        margin-bottom: 0;
+        padding-top: 120px;
+    }
+
+    .backdropImg {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: .05;
+        overflow: hidden;
+        z-index: -1;
+
+        .lazy-load-image-background {
+            width: 100%;
+            height: 100%;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+            }
+        }
+    }
+
+    .opacityLayer {
+        width: 100%;
+        height: 250px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        background: linear-gradient(180deg, rgba(4, 21, 45, 0) 0%, #04152d 79.17%);
+        // background-color: black;
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        gap: 25px;
+
+        @include md {
+            flex-direction: row;
+            gap: 50px;
+        }
+
+        .left {
+            flex-shrink: 0;
+
+            .posterImg {
+                width: 100%;
+                display: block;
+
+                @include md {
+                    max-width: 350px;
+                }
+            }
+        }
+
+        .right {
+            color: white;
+
+            .title {
+                font-size: 20px;
+                line-height: 40px;
+                font-weight: 600;
+
+                @include md {
+                    font-size: 24px;
+                    line-height: 44px;
+                }
+            }
+
+            .subTitle {
+                font-size: 14px;
+                opacity: .5;
+                line-height: 24px;
+                margin-bottom: 15px;
+
+                @include md {
+                    line-height: 28px;
+                    margin-bottom: 20px;
+                    font-size: 16px;
+                }
+            }
+
+            .genres {
+                display: flex;
+                flex-direction: row;
+                gap: 5px;
+                position: static;
+                margin-bottom: 25px;
+                flex-flow: row wrap;
+            }
+
+            .rating {
+                width: 50px;
+
+                .CircularProgressbar-text {
+                    font-size: 35px !important;
+                }
+            }
+
+            .playBtn {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                cursor: pointer;
+
+                svg {
+                    width: 50px;
+                    // @include md {
+                    //     width: 50px;
+                    // }
+                }
+
+                .text {
+                    font-size: 16px;
+                    transition: all 0.7s ease-in-out;
+                }
+
+                .triangle {
+                    stroke-dasharray: 240;
+                    stroke-dashoffset: 480;
+                    stroke: white;
+                    transform: translateY(0);
+                    transition: all 0.7s ease-in-out;
+                }
+
+                .circle {
+                    stroke: white;
+                    stroke-dasharray: 650;
+                    stroke-dashoffset: 1300;
+                    transition: all 0.5s ease-in-out;
+                }
+
+                &:hover {
+                    .text {
+                        color: var(--pink);
+                    }
+
+                    .triangle {
+                        stroke-dashoffset: 0;
+                        opacity: 1;
+                        stroke: var(--pink);
+                        animation: trailorPlay 0.7s ease-in-out;
+                    }
+
+                    .circle {
+                        stroke-dashoffset: 0;
+                        stroke: var(--pink);
+                    }
+                }
+            }
+
+            .overview {
+                margin-bottom: 20px;
+
+                .heading {
+                    font-size: 20px;
+                    line-height: 30px;
+                    font-weight: 600;
+
+                    @include md {
+                        font-size: 24px;
+                        line-height: 40px;
+                    }
+
+                    margin-bottom: 10px;
+                }
+
+                .description {
+                    line-height: 28px;
+                    text-align: justify;
+                    opacity: .8;
+                    font-weight: 300;
+
+                    @include md {
+                        line-height: 30px;
+                        padding-right: 10px;
+                    }
+                }
+            }
+
+            hr {
+                border-width: .1px;
+                opacity: .1;
+            }
+
+            .info {
+                display: flex;
+                justify-content: space-between;
+                margin: 15px 0;
+
+                @include lg {
+                    margin: 20px 0;
+                    justify-content: unset;
+                    gap: 30px;
+                }
+
+                .infoItem {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+
+                    @include lg {
+                        display: block;
+                    }
+
+                    .text {
+                        opacity: .6;
+
+                        &.bold {
+                            opacity: 1;
+                            font-weight: 600;
+                        }
+                    }
+                }
+            }
+
+            .row {
+                display: flex;
+                align-items: center;
+                gap: 25px;
+                margin-bottom: 25px;
+            }
+        }
+    }
+
+    .detailsBannerSkeleton {
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        gap: 25px;
+
+        @include md {
+            gap: 50px;
+            flex-direction: row;
+        }
+
+        .contentWrapper {
+            display: flex;
+            gap: 50px;
+        }
+
+        .left {
+            flex-shrink: 0;
+            width: 100%;
+            display: block;
+            aspect-ratio: 1/1.5;
+
+            @include md {
+                max-width: 350px;
+            }
+        }
+
+        .right {
+            width: 100%;
+
+            .row {
+                width: 100%;
+                height: 25px;
+                margin-bottom: 20px;
+
+                &:nth-child(2) {
+                    width: 75%;
+                    margin-bottom: 50px;
+                }
+
+                &:nth-child(5) {
+                    width: 50%;
+                    margin-bottom: 50px;
+                }
+            }
+        }
+    }
+}
